@@ -11,3 +11,15 @@
     color:white;
     text-align: center;
 }
+
+.btn-fixed-size {
+    width: 10vw;
+}
+
+.logo{
+    height: 4vh;
+}
+
+.output-json{
+    height: 60vh;
+}
