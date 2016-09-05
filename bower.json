@@ -1,0 +1,29 @@
+{
+  "name": "angularboilerplate",
+  "version": "0.1.0",
+  "homepage": "https://github.com/rupamroy/Angular-Boilerplate",
+  "authors": [
+    "Rupam Roy <roopamroy@gmail.com>"
+  ],
+  "description": "A place to test angular immediately",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.5.8",
+    "angular": "~1.5.8",
+    "bootstrap": "^3.3.7",
+    "json-formatter": "^0.6.0",
+    "angular-bootstrap": "^2.1.3",
+    "angular-animate": "^1.5.8",
+    "angular-sanitize": "^1.5.8"
+  },
+  "resolutions": {
+    "angular": "~1.5.8"
+  }
+}
