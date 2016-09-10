@@ -6,8 +6,8 @@
 
 
     config=require('./config');
+    app.use(serveStatic(config.rootPath));
     app.use(serveStatic(config.bowerPath));
-    app.use(serveStatic(config.rootPath + "/client"));
 
     app.listen(process.env.PORT || 3000);
     console.log("Listening on http://localhost:" + (process.env.PORT || '3000') );
