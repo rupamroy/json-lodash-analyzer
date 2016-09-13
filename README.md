@@ -1,5 +1,5 @@
-# Angular-Boilerplate
-A test repository to clone and start writing your test angular code
+# Json Lodash analyzer 
+This repo creates a playground for running lodash queries online on any json input 
 
 Make sure you have npm and bower installed in your shell (Node Cmd, Powershell or GIT Bash)
 
@@ -11,4 +11,8 @@ Make sure you have npm and bower installed in your shell (Node Cmd, Powershell o
   
 ##Steps to Run
 
- PORT=1234 node ./src/server/server.js
+node ./src/server/server.js
+
+default port is 3000, but can be overridden
+
+PORT=1234 node ./src/server/server.js  

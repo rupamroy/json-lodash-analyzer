@@ -6,7 +6,9 @@ WORKDIR /app
 EXPOSE 3000
 COPY bower.json /app
 COPY package.json /app
-RUN npm install --production && bower install
+RUN npm install bower -g && \
+    npm install --production && \
+    bower install --allow-root
 CMD ["node","src/server/server.js"]
 
 COPY /dist/src /app/src
