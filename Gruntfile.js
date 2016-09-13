@@ -1,4 +1,4 @@
-module.exports = function(grunt){
+module.exports = function (grunt) {
 
     grunt.initConfig({
 
@@ -19,7 +19,7 @@ module.exports = function(grunt){
             },
             build: {
                 files: {
-                    'dist/js/app.min.js': 'src/client/js/**/*.js'
+                    'dist/src/client/js/app.min.js': ['src/client/js/app.js', 'src/client/js/**/*.js']
                 }
             }
         },
@@ -31,13 +31,13 @@ module.exports = function(grunt){
             },
             build: {
                 files: {
-                    'dist/css/style.min.css': 'src/client/**/*.css'
+                    'dist/src/client/css/style.min.css': 'src/client/**/*.css'
                 }
             }
         },
 
         wiredep: {
-            task: {
+            dev: {
                 src: ['src/client/index.html'],
                 "overrides": {
                     "angular": {
@@ -70,7 +70,7 @@ module.exports = function(grunt){
 
         injector: {
             options: {},
-            local_dependencies: {
+            dev: {
                 files: {
                     'src/client/index.html': [
                         'src/client/js/app.js', //This is done to inject the app.js first
@@ -78,15 +78,52 @@ module.exports = function(grunt){
                         'src/client/css/**/*.css'
                     ]
                 }
+            },
+            build: {
+                options: {
+                    addRootSlash: false,
+                    ignorePath: 'dist'
+                },
+                files: {
+                    'dist/src/client/index.html': [
+                        'dist/src/client/js/app.min.js',
+                        'dist/src/client/css/style.min.css'
+                    ]
+                }
             }
+        },
+
+        copy: {
+            app: {
+                expand: true,
+                src: 'src/**/*',
+                dest: 'dist/'
+            },
+            bower: {
+                expand: true,
+                src: 'bower_components/**/*',
+                dest: 'dist/'
+            },
+            node_modules: {
+                expand: true,
+                src: 'node_modules/**/*',
+                dest: 'dist/'
+            }
+        },
+
+        clean: {
+            all: ['dist'],
+            app: ['dist/src/client/css/*.css', 'dist/src/client/js/*.js']
         }
 
     });
 
     // ============= // CREATE TASKS ========== //
-    grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['jshint', 'wiredep', 'injector:dev']);
 
-    grunt.registerTask('inject', ['injector', 'wiredep']);
+    grunt.registerTask('build', ['clean:all', 'copy', 'clean:app', 'uglify', 'cssmin', 'injector:build']);
+
+
 
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -94,7 +131,9 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-wiredep');
     grunt.loadNpmTasks('grunt-injector');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
 };
