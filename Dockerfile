@@ -4,10 +4,10 @@ MAINTAINER Rupam Roy
 
 WORKDIR /app
 EXPOSE 3000
-COPY /dist/bower_components /app/
+COPY bower.json /app
 COPY package.json /app
-RUN npm install
+RUN npm install --production && bower install
 CMD ["node","src/server/server.js"]
 
-COPY /dist/src /app/
+COPY /dist/src /app/src
 
