@@ -2,12 +2,15 @@
 <html>
 <head>
     <title></title>
+
+    <!-- build:remove:dist -->
     <!-- bower:css -->
     <link rel="stylesheet" href="../../bower_components/json-formatter/dist/json-formatter.css" />
     <link rel="stylesheet" href="../../bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../../bower_components/bootswatch/superhero/bootstrap.css" />
     <!-- endbower -->
+    <!-- /build -->
 
     <!-- injector:css -->
     <link rel="stylesheet" href="/src/client/css/site.css">
@@ -42,6 +45,8 @@
 
 
 <ng-view></ng-view>
+
+<!-- build:remove:dist -->
 <!-- bower:js -->
 <script src="../../bower_components/jquery/dist/jquery.js"></script>
 <script src="../../bower_components/angular/angular.js"></script>
@@ -54,6 +59,7 @@
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="../../bower_components/lodash/lodash.js"></script>
 <!-- endbower -->
+<!-- /build -->
 
 <!-- injector:js -->
 <script src="/src/client/js/app.js"></script>

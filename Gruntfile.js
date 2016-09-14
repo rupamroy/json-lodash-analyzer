@@ -9,7 +9,6 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             build: ['Gruntfile.js', 'src/**/*.js']
-
         },
 
         // configure uglify to minify js files -------------------------------------
@@ -19,7 +18,8 @@ module.exports = function (grunt) {
             },
             build: {
                 files: {
-                    'dist/src/client/js/app.min.js': ['src/client/js/app.js', 'src/client/js/**/*.js']
+                    'dist/src/client/js/app.min.js': ['src/client/js/app.js', 'src/client/js/**/*.js'],
+                    'dist/src/client/js/vendor.min.js': require('wiredep')().js
                 }
             }
         },
@@ -31,40 +31,15 @@ module.exports = function (grunt) {
             },
             build: {
                 files: {
-                    'dist/src/client/css/style.min.css': 'src/client/**/*.css'
+                    'dist/src/client/css/style.min.css': 'src/client/**/*.css',
+                    'dist/src/client/css/vendor.min.css': require('wiredep')().css
                 }
             }
         },
 
         wiredep: {
             dev: {
-                src: ['src/client/index.html'],
-                "overrides": {
-                    "angular": {
-                        "dependencies": {
-                            "jquery": "*"
-                        }
-                    },
-                    "bootstrap": {
-                        "main": [
-                            "less/bootstrap.less",
-                            "dist/css/bootstrap.css",
-                            "dist/js/bootstrap.js"
-                        ]
-                    },
-                    "angular-bootstrap": {
-                        "main": [
-                            "ui-bootstrap-csp.css",
-                            "ui-bootstrap.js",
-                            "ui-bootstrap-tpls.js"
-                        ]
-                    },
-                    "bootswatch": {
-                        "main": [
-                            "superhero/bootstrap.css"
-                        ]
-                    }
-                }
+                src: ['src/client/index.html']
             }
         },
 
@@ -79,14 +54,16 @@ module.exports = function (grunt) {
                     ]
                 }
             },
-            build: {
+            buildApp: {
                 options: {
                     addRootSlash: false,
                     ignorePath: 'dist'
                 },
                 files: {
                     'dist/src/client/index.html': [
+                        'dist/src/client/js/vendor.min.js',
                         'dist/src/client/js/app.min.js',
+                        'dist/src/client/css/vendor.min.css',
                         'dist/src/client/css/style.min.css'
                     ]
                 }
@@ -98,32 +75,28 @@ module.exports = function (grunt) {
                 expand: true,
                 src: 'src/**/*',
                 dest: 'dist/'
-            },
-            bower: {
-                expand: true,
-                src: 'bower_components/**/*',
-                dest: 'dist/'
-            },
-            node_modules: {
-                expand: true,
-                src: 'node_modules/**/*',
-                dest: 'dist/'
             }
         },
 
         clean: {
             all: ['dist'],
             app: ['dist/src/client/css/*.css', 'dist/src/client/js/*.js']
-        }
+        },
 
+        processhtml: {
+            dist: {
+                files: {
+                    'dist/src/client/index.html': ['src/client/index.html']
+                }
+            }
+        }
     });
 
     // ============= // CREATE TASKS ========== //
-    grunt.registerTask('default', ['jshint', 'wiredep', 'injector:dev']);
+    grunt.registerTask('default', ['jshint', 'injector:dev', 'wiredep:dev']);
 
-    grunt.registerTask('build', ['clean:all', 'copy', 'clean:app', 'uglify', 'cssmin', 'injector:build']);
-
-
+    grunt.registerTask('build', ['clean:all', 'copy', 'clean:app',
+        'processhtml:dist', 'uglify', 'cssmin', 'injector:buildApp']);
 
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -135,5 +108,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-wiredep');
     grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-processhtml');
 
 };
