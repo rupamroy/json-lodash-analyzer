@@ -23,3 +23,21 @@
 .output-json{
     height: 60vh;
 }
+
+.full-screen {
+    position: fixed;
+    top:12vh;
+    left:1vh;
+    width: 98vw;
+}
+
+.move {
+    position: relative;
+    top: 4vh;
+    left: -1vw;
+    z-index: 1000;
+}
+
+.highlight {
+    font-size: larger;
+}
