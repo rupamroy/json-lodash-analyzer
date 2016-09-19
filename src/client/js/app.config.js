@@ -9,6 +9,10 @@
                  templateUrl:'js/home.html',
                  controller: 'homeController'
              })
+             .when('/help', {
+                 templateUrl: 'js/help.html',
+                 controller: 'helpController'
+             })
              .otherwise('/home');
 
      }

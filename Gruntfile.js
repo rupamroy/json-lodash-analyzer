@@ -89,7 +89,32 @@ module.exports = function (grunt) {
                     'dist/src/client/index.html': ['src/client/index.html']
                 }
             }
+        },
+
+        shell: {
+            dockerize: {
+                command: 'docker build -t json-lodash-analyzer .'
+            },
+            dockerTagLatest: {
+                command: 'docker tag json-lodash-analyzer 873280763015.dkr.ecr.us-east-1.amazonaws.com/json-lodash-analyzer:latest'
+            },
+            dockerTag: {
+                command: 'docker tag json-lodash-analyzer 873280763015.dkr.ecr.us-east-1.amazonaws.com/json-lodash-analyzer:<%= pkg.version %>'
+            },
+            awsDockerlogin: {
+                command: 'eval $(aws ecr get-login)'
+            },
+            push: {
+                command: 'docker push 873280763015.dkr.ecr.us-east-1.amazonaws.com/json-lodash-analyzer:latest && ' +
+                'docker push 873280763015.dkr.ecr.us-east-1.amazonaws.com/json-lodash-analyzer:<%= pkg.version %>'
+            },
+            restart: {
+                command: 'aws ecs update-service --service sample-lodash-analyzer --desired-count 0' +
+                    'echo " please run aws ecs update-service --service sample-lodash-analyzer --desired-count 1"'
+            }
         }
+
+
     });
 
     // ============= // CREATE TASKS ========== //
@@ -97,6 +122,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', ['clean:all', 'copy', 'clean:app',
         'processhtml:dist', 'uglify', 'cssmin', 'injector:buildApp']);
+
+    grunt.registerTask('deploy', ['shell']);
 
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -109,5 +136,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-shell');
 
 };

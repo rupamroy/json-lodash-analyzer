@@ -22,8 +22,12 @@ PORT=1234 node ./src/server/server.js
 
 ### Steps to build and update to aws
 
+Update the package.json version then,
+
 grunt build
 
-grunt dockerize
+grunt deploy
+
+Wait for 30 secs....
 
 aws ecs update-service --service sample-lodash-analyzer --desired-count 1
