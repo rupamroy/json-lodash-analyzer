@@ -26,9 +26,14 @@
 
 .full-screen {
     position: fixed;
-    top:12vh;
-    left:1vh;
+    top:4vh;
+    left:1vw;
+    height: 100vh;
     width: 98vw;
+}
+
+.whole-height{
+    height: 100%;
 }
 
 .move {
