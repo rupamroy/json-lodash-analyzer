@@ -2,14 +2,17 @@
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <p><span class="highlight">Type your <a target="_blank" href="https://lodash.com/docs/4.15.0">lodash</a> expression.</span>
-                    <select ng-model="expression">
+                <p>
+                    <select ng-model="expression" class="form-control">
                         <option ng-repeat="x in examples" value="{{x.value}}">{{x.name}}</option>
                     </select>
+                    <span class="highlight">Type your <a target="_blank"
+                                                         href="https://lodash.com/docs/4.15.0">lodash</a> expression.</span>
+
                 </p>
                 <p>
                     <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="4"
-                              ng-model="expression"/>
+                              ng-model="expression || expressionDefault"/>
                 </p>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -36,7 +39,8 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 <h4>Input your Json Here <a href="#" class="pull-right" data-html="true" data-toggle="tooltip" title="If the UI feels slow when processing huge JSON, try firefox, which will definitely provide better performance.
-                Meanwhile we are working on a server side processing so that the browser is not bothered with intensive data processing.....">Slow?</a></h4>
+                Meanwhile we are working on a server side processing so that the browser is not bothered with intensive data processing.....">Slow?</a>
+                </h4>
                 <p>
                     <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="15"
                               ng-model="jsonText"/>

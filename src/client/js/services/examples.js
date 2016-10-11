@@ -11,6 +11,10 @@
         function getExamples(){
             return [
                 {
+                    name: "Examples",
+                    value: ""
+                },
+                {
                     name: "Map",
                     value: "_.map(jsonObj,function(o){\n\treturn { name: o.name };\n});"
                 },
