@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 <p>
-                    <select ng-model="expression" class="form-control">
+                    <select ng-model="exampleSelected" class="form-control">
                         <option ng-repeat="x in examples" value="{{x.value}}">{{x.name}}</option>
                     </select>
                     <span class="highlight">Type your <a target="_blank"
@@ -11,7 +11,7 @@
 
                 </p>
                 <p>
-                    <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="4"
+                    <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="4" ng-bind="exampleSelected"
                               ng-model="expression || expressionDefault"/>
                 </p>
             </div>

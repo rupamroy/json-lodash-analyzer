@@ -11,7 +11,7 @@
         function getExamples(){
             return [
                 {
-                    name: "Examples",
+                    name: "Examples of Expressions",
                     value: ""
                 },
                 {
@@ -21,6 +21,14 @@
                 {
                     name: "Find",
                     value: "_.find(jsonObj,function(o){\n\treturn o.username === 'Antonette';\n});"
+                },
+                {
+                    name: "Filter",
+                    value: "_.filter(jsonObj,function(o){\n\treturn o.username === 'Antonette';\n});"
+                },
+                {
+                    name: "Code",
+                    value: "var x=_.map(jsonObj,function(o){\n\treturn { name: o.address };\n})\n_.filter(x,function(o){\n\treturn o.city === 'Wisokyburgh';\n});"
                 }
             ];
         }
