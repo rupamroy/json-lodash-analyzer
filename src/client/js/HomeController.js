@@ -6,7 +6,7 @@
 
     function HomeController($scope, exampleFactory) {
         $scope.runExpression = runExpression;
-      //  $scope.assignExpression = assignExpression;
+        $scope.assignExpression = assignExpression;
         $scope.validateJson = validateJson;
         $scope.beautify = beautify;
         $scope.toggleFull = toggleFull;
@@ -30,9 +30,9 @@
             }
         }
 
-        /*function assignExpression(){
-            $scope.expression = $scope.exampleSelected
-        }*/
+        function assignExpression(){
+            $scope.expression = angular.copy($scope.exampleSelected);
+        }
 
         function beautify() {
             var jsonObj = {};

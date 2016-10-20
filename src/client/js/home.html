@@ -3,16 +3,15 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                 <p>
-                    <select ng-model="exampleSelected" class="form-control">
+                    <span>Type your <a target="_blank"
+                                                         href="https://lodash.com/docs/4.15.0">lodash</a> expression. Watch Examples below</span>
+                    <select ng-model="exampleSelected" ng-change="assignExpression()" class="form-control">
                         <option ng-repeat="x in examples" value="{{x.value}}">{{x.name}}</option>
                     </select>
-                    <span class="highlight">Type your <a target="_blank"
-                                                         href="https://lodash.com/docs/4.15.0">lodash</a> expression.</span>
-
                 </p>
                 <p>
-                    <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="4" ng-bind="exampleSelected"
-                              ng-model="expression || expressionDefault"/>
+                    <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="4"
+                              ng-model="expression" ng-init="expression=expressionDefault"/>
                 </p>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
