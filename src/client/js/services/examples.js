@@ -28,7 +28,7 @@
                 },
                 {
                     name: "Code",
-                    value: "var x=_.map(jsonObj,function(o){\n\treturn { name: o.address };\n})\n_.filter(x,function(o){\n\treturn o.city === 'Wisokyburgh';\n});"
+                    value: "var x=_.map(jsonObj,function(o){\n\treturn o.address;\n})\n_.filter(x,function(o){\n\treturn o.city === 'Wisokyburgh';\n});"
                 }
             ];
         }
