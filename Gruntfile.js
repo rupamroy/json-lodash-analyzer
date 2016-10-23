@@ -109,7 +109,7 @@ module.exports = function (grunt) {
                 'docker push 873280763015.dkr.ecr.us-east-1.amazonaws.com/json-lodash-analyzer:<%= pkg.version %>'
             },
             restart: {
-                command: 'aws ecs update-service --service sample-lodash-analyzer --desired-count 0' +
+                command: 'aws ecs update-service --service sample-lodash-analyzer --desired-count 0 &' +
                     'echo " please run aws ecs update-service --service sample-lodash-analyzer --desired-count 1"'
             }
         }
