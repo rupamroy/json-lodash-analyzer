@@ -2,6 +2,8 @@
 
 This repo creates a playground for running lodash queries online on any json input 
 
+Hosted site: [json lodash analyzer](http://json-analyzer.com)
+
 Make sure you have npm and bower installed in your shell (Node Cmd, Powershell or GIT Bash)
 
 ## Steps to build
