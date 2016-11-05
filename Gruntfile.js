@@ -6,7 +6,8 @@ module.exports = function (grunt) {
 
         jshint: {
             options: {
-                reporter: require('jshint-stylish')
+                reporter: require('jshint-stylish'),
+                jshintrc: true
             },
             build: ['Gruntfile.js', 'src/**/*.js']
         },
@@ -75,6 +76,12 @@ module.exports = function (grunt) {
                 expand: true,
                 src: 'src/**/*',
                 dest: 'dist/'
+            },
+            fonts: {
+                expand: true,
+                cwd: 'bower_components/bootstrap/fonts',
+                src: '**',
+                dest: 'dist/src/client/fonts/'
             }
         },
 
@@ -110,7 +117,7 @@ module.exports = function (grunt) {
             },
             restart: {
                 command: 'aws ecs update-service --service sample-lodash-analyzer --desired-count 0 &' +
-                    'echo " please run aws ecs update-service --service sample-lodash-analyzer --desired-count 1"'
+                'echo " please run aws ecs update-service --service sample-lodash-analyzer --desired-count 1"'
             }
         }
 

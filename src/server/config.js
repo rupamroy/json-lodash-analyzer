@@ -1,13 +1,12 @@
-(function() {
-    var path, rootPath, bowerPath;
+var path, rootPath, bowerPath;
 
-    path = require('path');
+path = require('path');
 
-    rootPath = path.normalize(__dirname + '/../client');
-    bowerPath = path.normalize(__dirname + '/../../');
-    module.exports = {
-        rootPath: rootPath,
-        bowerPath: bowerPath
-    };
+rootPath = path.normalize(__dirname + '/../client');
+bowerPath = path.normalize(__dirname + '/../../');
+module.exports = {
+    rootPath: rootPath,
+    bowerPath: bowerPath,
+    apiver: '/api/v1'
+};
 
-}).call(this);

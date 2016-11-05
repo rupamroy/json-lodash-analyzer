@@ -2,9 +2,9 @@
     angular.module('analyzerApp')
         .controller('homeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'exampleFactory'];
+    HomeController.$inject = ['$scope', 'exampleFactory', 'feedbackService'];
 
-    function HomeController($scope, exampleFactory) {
+    function HomeController($scope, exampleFactory,feedbacksrv) {
         $scope.runExpression = runExpression;
         $scope.assignExpression = assignExpression;
         $scope.validateJson = validateJson;
@@ -23,6 +23,13 @@
                     jsonObj = JSON.parse($scope.jsonText);
                     $scope.outputObj = eval($scope.expression); // jshint ignore:line
                     $scope.previewString = JSON.stringify($scope.outputObj, null, "  ");
+                    feedbacksrv.send('Rupam', 'roopamroy@gmail.com', 'Testing from home controller')
+                        .then(function(data){
+                            console.log(data);
+                        })
+                        .catch(function(err){
+                            console.log(err);
+                        });
                 }
                 catch (err) {
                     $scope.error = err;
@@ -52,7 +59,7 @@
         function validateJson() {
             if ($scope.jsonText) {
                 try {
-                    data = JSON.parse($scope.jsonText);
+                    JSON.parse($scope.jsonText);
                     return true;
                 }
                 catch (err) {
@@ -62,10 +69,6 @@
             else {
                 return false;
             }
-        }
-
-        function reset() {
-            $scope.error = void 0;
         }
 
         function toggleFull(isFull) {
